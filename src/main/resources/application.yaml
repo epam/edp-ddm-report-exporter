@@ -1,0 +1,40 @@
+spring:
+  application:
+    name: report-exporter
+  mvc:
+    throw-exception-if-no-handler-found: true
+  resources:
+    add-mappings: false
+  zipkin:
+    baseUrl: http://zipkin.istio-system.svc:9411
+    sender:
+      type: web
+  sleuth:
+    opentracing:
+      enabled: true
+    baggage:
+      correlation-enabled: true
+      remote-fields: x-request-id, x-access-token
+      correlation-fields: x-request-id
+
+springdoc:
+  swagger-ui:
+    path: /openapi
+
+openapi:
+  request:
+    headers:
+      - X-Access-Token
+  response:
+    codes:
+      get-by-id: 200, 401, 403, 500, 501
+      post: 200, 400, 401, 403, 422, 500, 501
+
+platform:
+  security:
+    enabled: true
+    whitelist:
+      - /openapi
+      - /v3/api-docs/**
+      - /swagger-ui/**
+      - /actuator/**
