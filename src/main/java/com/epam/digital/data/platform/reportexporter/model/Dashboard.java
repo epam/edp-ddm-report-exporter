@@ -11,7 +11,6 @@ public class Dashboard {
   private List<String> tags;
   private Set<Widget> widgets;
   private Object options;
-  @JsonProperty("is_draft")
   private boolean isDraft;
 
   public Integer getId() {

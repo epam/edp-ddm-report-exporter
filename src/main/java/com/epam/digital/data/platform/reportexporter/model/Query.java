@@ -20,7 +20,6 @@ public class Query {
   private Map<String, Object> options;
   @JsonProperty(access = Access.WRITE_ONLY)
   private List<Visualization> visualizations;
-  @JsonProperty("is_draft")
   private boolean isDraft;
 
   public Integer getId() {

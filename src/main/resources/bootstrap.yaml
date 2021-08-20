@@ -1,6 +1,7 @@
 spring:
   application:
     name: report-exporter
+
 logging:
   config: classpath:log4j2-json-console.xml
 ---
@@ -11,6 +12,13 @@ spring:
         enabled: true
         paths: /app/config/config.yaml
         enable-api: false
+
+      secrets:
+        enabled: true
+        enable-api: false
+        paths:
+          - /app/secrets
+
 ---
 spring:
   profiles: local
