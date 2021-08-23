@@ -32,7 +32,7 @@ public class ReportServiceTest {
 
   @BeforeEach
   void setup() {
-    instance = new ReportService(dashboardClient, archiver, queryHelper);
+    instance = new ReportService(dashboardClient, queryHelper, archiver);
   }
 
   @Test

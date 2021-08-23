@@ -17,6 +17,34 @@ spring:
       remote-fields: x-request-id, x-access-token
       correlation-fields: x-request-id
 
+management:
+  endpoints:
+    enabled-by-default: false
+    web:
+      exposure:
+        include: "*"
+    jmx:
+      exposure:
+        exclude: "*"
+  endpoint:
+    health:
+      enabled: true
+      show-details: always
+      group:
+        liveness:
+          include: livenessState, livenessResponseCheck
+        readiness:
+          include: readinessState
+    loggers:
+      enabled: true
+    prometheus:
+      enabled: true
+  health:
+    livenessstate:
+      enabled: true
+    readinessstate:
+      enabled: true
+
 springdoc:
   swagger-ui:
     path: /openapi
@@ -31,7 +59,7 @@ openapi:
       post: 200, 400, 401, 403, 422, 500, 501
 
 redash:
-  url: ${REDASH_URL}
+  url: ${redash.url}
   api-key: ${REDASH_API_KEY}
 
 platform:

@@ -6,7 +6,6 @@ import org.springframework.context.annotation.Bean;
 
 public class FeignConfig {
 
-  //TODO: obtain api key from OpenShift
   @Value("${redash.api-key}")
   private String apiKey;
 

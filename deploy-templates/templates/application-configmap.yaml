@@ -4,4 +4,8 @@ metadata:
   name: report-exporter-properties
 data:
   config.yaml: |-
-    server.max-http-header-size: 16KB
+    server:
+      max-http-header-size: 16KB
+
+    redash:
+      url: {{ .Values.redash.url }}

@@ -5,7 +5,6 @@ import com.epam.digital.data.platform.reportexporter.model.Query;
 import java.util.ArrayList;
 import java.util.Set;
 
-//TODO: think of better name
 public class QueryFormatter {
 
   private QueryFormatter() {}

@@ -1,7 +1,6 @@
 package com.epam.digital.data.platform.reportexporter.service;
 
 import static com.epam.digital.data.platform.reportexporter.util.ResponseHandler.handleResponse;
-import static java.util.stream.Collectors.toList;
 import static java.util.stream.Collectors.toSet;
 
 import com.epam.digital.data.platform.reportexporter.client.QueryClient;
@@ -13,9 +12,9 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 import java.util.stream.Stream;
-import org.springframework.stereotype.Service;
+import org.springframework.stereotype.Component;
 
-@Service
+@Component
 public class QueryHelper {
 
   private final QueryClient queryClient;

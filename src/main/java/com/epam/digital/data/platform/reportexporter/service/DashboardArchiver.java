@@ -15,10 +15,11 @@ import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.FilenameUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.core.io.ByteArrayResource;
-import org.springframework.stereotype.Service;
+import org.springframework.stereotype.Component;
 
-@Service
+@Component
 public class DashboardArchiver {
 
   private final Logger log = LoggerFactory.getLogger(DashboardArchiver.class);
@@ -32,7 +33,7 @@ public class DashboardArchiver {
   public DashboardArchiver(ObjectMapper objectMapper) {
     this.objectMapper = objectMapper;
   }
-
+  
   public ByteArrayResource zipDashboard(String slug, Page<Query> queries, Dashboard dashboard) {
     log.info("Creating zip archive for dashboard with slug {}", slug);
     var zip = zip(slug, queries, dashboard);

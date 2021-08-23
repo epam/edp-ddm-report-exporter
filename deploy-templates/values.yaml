@@ -15,6 +15,16 @@ image:
   name: report-exporter
   version: latest
 
+probes:
+  liveness:
+    path: /actuator/health/liveness
+  readiness:
+    path: /actuator/health/readiness
+
+redash:
+  url: https://redash-admin:443
+  secret: redash-api-keys
+
 monitoring:
   namespace: openshift-monitoring
   prometheusScrapePath: /actuator/prometheus

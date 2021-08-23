@@ -30,6 +30,24 @@ spec:
           ports:
             - containerPort: {{ .Values.port }}
               protocol: TCP
+          livenessProbe:
+            httpGet:
+              path: {{ .Values.probes.liveness.path }}
+              port: {{ .Values.port }}
+            failureThreshold: 1
+            initialDelaySeconds: 180
+            periodSeconds: 20
+            successThreshold: 1
+            timeoutSeconds: 5
+          readinessProbe:
+            httpGet:
+              path: {{ .Values.probes.readiness.path }}
+              port: {{ .Values.port }}
+            failureThreshold: 5
+            initialDelaySeconds: 60
+            periodSeconds: 20
+            successThreshold: 1
+            timeoutSeconds: 5
           resources:
             requests:
               memory: 500Mi
@@ -40,11 +58,12 @@ spec:
               name: config
               readOnly: true
               subPath: config.yaml
-      initContainers:
-        - name: init
-          image: {{ .Values.dockerProxyRegistry }}/busybox
-          imagePullPolicy: IfNotPresent
-          command: ["sh", "-c", "while ! nc -w 1 {{ .Values.db.url }} {{ .Values.db.port }} </dev/null; do echo waiting for {{ .Values.db.url }}; sleep 10; done;"]
+          env:
+            - name: REDASH_API_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: {{ .Values.redash.secret }}
+                  key: admin-api-key
       dnsPolicy: ClusterFirst
       restartPolicy: Always
       schedulerName: default-scheduler

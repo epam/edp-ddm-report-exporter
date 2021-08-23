@@ -2,13 +2,13 @@ package com.epam.digital.data.platform.reportexporter.service;
 
 import static com.epam.digital.data.platform.reportexporter.util.QueryFormatter.formatQueryList;
 import static com.epam.digital.data.platform.reportexporter.util.ResponseHandler.handleResponse;
+
 import com.epam.digital.data.platform.reportexporter.client.DashboardClient;
 import com.epam.digital.data.platform.reportexporter.model.Dashboard;
 import java.util.List;
 import org.springframework.core.io.ByteArrayResource;
 import org.springframework.stereotype.Service;
 
-//TODO: think about better name for service
 @Service
 public class ReportService {
 
@@ -18,8 +18,8 @@ public class ReportService {
   private final QueryHelper queryHelper;
 
   public ReportService(DashboardClient client,
-      DashboardArchiver archiver,
-      QueryHelper queryHelper) {
+      QueryHelper queryHelper,
+      DashboardArchiver archiver) {
     this.dashboardClient = client;
     this.archiver = archiver;
     this.queryHelper = queryHelper;
