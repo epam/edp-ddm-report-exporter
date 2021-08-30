@@ -64,6 +64,9 @@ spec:
                 secretKeyRef:
                   name: {{ .Values.redash.secret }}
                   key: admin-api-key
+            - name: REDASH_URL
+              value: https://redash-admin-{{ .Values.namespace }}.{{ .Values.dnsWildcard }}
+
       dnsPolicy: ClusterFirst
       restartPolicy: Always
       schedulerName: default-scheduler

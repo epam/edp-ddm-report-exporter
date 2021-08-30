@@ -6,6 +6,3 @@ data:
   config.yaml: |-
     server:
       max-http-header-size: 16KB
-
-    redash:
-      url: {{ .Values.redash.url }}

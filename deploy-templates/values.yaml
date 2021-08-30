@@ -22,7 +22,6 @@ probes:
     path: /actuator/health/readiness
 
 redash:
-  url: https://redash-admin:443
   secret: redash-api-keys
 
 monitoring:
