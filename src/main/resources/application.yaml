@@ -59,7 +59,6 @@ openapi:
       post: 200, 400, 401, 403, 422, 500, 501
 
 redash:
-  url: ${redash.url}
   api-key: ${REDASH_API_KEY}
 
 platform:
