@@ -9,7 +9,6 @@ import java.util.Map;
 import java.util.Objects;
 
 public class Query {
-  @JsonProperty(access = Access.WRITE_ONLY)
   private Integer id;
   private Integer dataSourceId;
   private String name;

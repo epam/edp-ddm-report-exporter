@@ -35,6 +35,7 @@ public class QueryHelper {
 
   private Set<Integer> getUtilQueryIds(Dashboard dashboard) {
     return dashboard.getWidgets().stream()
+        .filter(widget -> widget.getVisualization() != null)
         .flatMap(this::getParameterQueries)
         .collect(toSet());
   }
@@ -58,7 +59,8 @@ public class QueryHelper {
         queries.add((Integer) parameter.get("queryId"));
       }
     }
-
+    queries.add(widget.getVisualization().getQuery().getId());
+    
     return queries.stream();
   }
 }

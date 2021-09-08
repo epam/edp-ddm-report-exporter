@@ -1,7 +1,5 @@
 package com.epam.digital.data.platform.reportexporter.model;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonProperty.Access;
 import java.util.Objects;
 
 public class Widget {
@@ -10,7 +8,6 @@ public class Widget {
   private Integer width;
   private Integer dashboardId;
   private Integer visualizationId;
-  @JsonProperty(access = Access.WRITE_ONLY)
   private Visualization visualization;
 
   public String getText() {
