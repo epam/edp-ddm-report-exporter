@@ -1,6 +1,7 @@
 package com.epam.digital.data.platform.reportexporter.service;
 
 import static com.epam.digital.data.platform.reportexporter.util.ResponseHandler.handleResponse;
+import static java.lang.Math.max;
 import static java.util.stream.Collectors.toSet;
 
 import com.epam.digital.data.platform.reportexporter.client.QueryClient;
@@ -43,7 +44,7 @@ public class QueryHelper {
   }
 
   private List<Query> getQueries(int queryCount) {
-    return handleResponse(queryClient.getQueries(queryCount)).getResults();
+    return handleResponse(queryClient.getQueries(max(1, queryCount))).getResults();
   }
 
   private Stream<Integer> getParameterQueries(Widget widget) {

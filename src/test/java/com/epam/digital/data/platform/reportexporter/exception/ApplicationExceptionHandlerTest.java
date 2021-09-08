@@ -76,4 +76,17 @@ class ApplicationExceptionHandlerTest extends ResponseEntityExceptionHandler {
                 jsonPath("$.code").value(is(FORBIDDEN_OPERATION))));
   }
 
+  @Test
+  void shouldReturnNotFoundWhenSlugDoesNotExist() throws Exception {
+    when(mockService.getArchive(any())).thenThrow(new NotFoundException("No slug found"));
+
+    mockMvc.perform(get(BASE_URL + "/{id}", ENTITY_ID))
+        .andExpect(status().isNotFound())
+        .andExpect(response -> assertTrue(
+            response.getResolvedException() instanceof NotFoundException))
+        .andExpect(matchAll(
+            jsonPath("$.code").value(is("NOT_FOUND"))
+        ));
+  }
+
 }

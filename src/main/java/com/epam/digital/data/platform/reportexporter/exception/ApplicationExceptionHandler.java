@@ -19,6 +19,7 @@ public class ApplicationExceptionHandler extends ResponseEntityExceptionHandler 
   private final Logger log = LoggerFactory.getLogger(ApplicationExceptionHandler.class);
 
   private final String RUNTIME_ERROR = "RUNTIME_ERROR";
+  private final String NOT_FOUND = "NOT_FOUND";
   private final String DASHBOARD_ZIP_ERROR = "DASHBOARD_ZIP_ERROR";
   private final String FORBIDDEN_OPERATION = "FORBIDDEN_OPERATION";
 
@@ -43,6 +44,14 @@ public class ApplicationExceptionHandler extends ResponseEntityExceptionHandler 
     log.error("Access denied", exception);
     return ResponseEntity.status(HttpStatus.FORBIDDEN)
         .body(newDetailedResponse(FORBIDDEN_OPERATION));
+  }
+
+  @ExceptionHandler(NotFoundException.class)
+  public ResponseEntity<DetailedErrorResponse<Void>> handleNotFoundException(
+      NotFoundException exception) {
+    log.error("Redash object not found", exception);
+    return ResponseEntity.status(HttpStatus.NOT_FOUND)
+        .body(newDetailedResponse(NOT_FOUND));
   }
 
   private <T> DetailedErrorResponse<T> newDetailedResponse(String code) {
