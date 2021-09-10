@@ -30,7 +30,7 @@ public class ReportController {
     return ResponseEntity.ok().body(service.getDashboards());
   }
 
-  @GetMapping(path = "/{slug_id}", produces = "application/zip")
+  @GetMapping(path = "/{slug_id}")
   public ResponseEntity<Resource> getDashboardArchive(@PathVariable("slug_id") String slugId) {
     var zip = service.getArchive(slugId);
 
