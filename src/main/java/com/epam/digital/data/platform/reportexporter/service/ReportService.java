@@ -2,6 +2,7 @@ package com.epam.digital.data.platform.reportexporter.service;
 
 import static com.epam.digital.data.platform.reportexporter.util.QueryFormatter.formatQueryList;
 import static com.epam.digital.data.platform.reportexporter.util.ResponseHandler.handleResponse;
+import static java.util.stream.Collectors.toList;
 
 import com.epam.digital.data.platform.reportexporter.client.DashboardClient;
 import com.epam.digital.data.platform.reportexporter.model.Dashboard;
@@ -26,7 +27,11 @@ public class ReportService {
   }
 
   public List<Dashboard> getDashboards() {
-    return handleResponse(dashboardClient.getDashboards()).getResults();
+    var dashboards =  handleResponse(dashboardClient.getDashboards()).getResults();
+
+    return dashboards.stream()
+        .filter(dashboard -> !dashboard.isDraft())
+        .collect(toList());
   }
 
   public ByteArrayResource getArchive(String slug) {
