@@ -44,6 +44,8 @@ management:
       enabled: true
     readinessstate:
       enabled: true
+    kafka:
+      enabled: false
 
 springdoc:
   swagger-ui:
