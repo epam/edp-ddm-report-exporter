@@ -6,3 +6,7 @@ data:
   config.yaml: |-
     server:
       max-http-header-size: 16KB
+
+    logging:
+      level:
+        org.zalando.logbook: TRACE
