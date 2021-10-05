@@ -6,8 +6,10 @@ server:
   port: 7070
 
 redash:
-  url: https://redash-admin-mdtu-ddm-edp-cicd-data-pipe-ci.apps.cicd2.mdtu-ddm.projects.epam.com
-  api-key: apikey
+  url: https://redash-admin-mdtu-ddm-edp-cicd-release-1-4-stag.apps.cicd2.mdtu-ddm.projects.epam.com
+
+openshift:
+  namespace: namespace
 
 logging:
   level:

@@ -3,18 +3,22 @@ package com.epam.digital.data.platform.reportexporter.config;
 import com.epam.digital.data.platform.reportexporter.config.feign.FeignErrorDecoder;
 import feign.RequestInterceptor;
 import feign.codec.ErrorDecoder;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
 
+@Configuration
 public class FeignConfig {
 
-  @Value("${redash.api-key}")
-  private String apiKey;
+  private final OpenShiftClient client;
+
+  public FeignConfig(OpenShiftClient client) {
+    this.client = client;
+  }
 
   @Bean
   public RequestInterceptor requestInterceptor() {
     return requestTemplate ->
-        requestTemplate.header("Authorization", apiKey);
+        requestTemplate.header("Authorization", client.getApiKey());
   }
 
   @Bean

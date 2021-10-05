@@ -59,11 +59,8 @@ spec:
               readOnly: true
               subPath: config.yaml
           env:
-            - name: REDASH_API_KEY
-              valueFrom:
-                secretKeyRef:
-                  name: {{ .Values.redash.secret }}
-                  key: admin-api-key
+            - name: OPENSHIFT_NAMESPACE
+              value: {{ .Values.namespace }}
             - name: REDASH_URL
               value: https://redash-admin-{{ .Values.namespace }}.{{ .Values.dnsWildcard }}
       dnsPolicy: ClusterFirst

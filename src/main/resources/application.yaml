@@ -62,7 +62,9 @@ openapi:
 
 redash:
   url: ${REDASH_URL}
-  api-key: ${REDASH_API_KEY}
+
+openshift:
+  namespace: ${OPENSHIFT_NAMESPACE}
 
 platform:
   security:
