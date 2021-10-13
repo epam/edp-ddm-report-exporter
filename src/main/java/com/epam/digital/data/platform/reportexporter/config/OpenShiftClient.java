@@ -3,8 +3,8 @@ package com.epam.digital.data.platform.reportexporter.config;
 import io.fabric8.kubernetes.client.KubernetesClient;
 import java.nio.charset.StandardCharsets;
 import java.util.Base64;
-import java.util.HashMap;
 import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
 import java.util.function.Supplier;
 import org.springframework.stereotype.Component;
 
@@ -15,7 +15,7 @@ public class OpenShiftClient {
   private final String ADMIN_KEY = "admin-api-key";
 
   private final Supplier<KubernetesClient> kubernetesClientFactory;
-  private final Map<String, String> apiKeyMap = new HashMap<>();
+  private final Map<String, String> apiKeyMap = new ConcurrentHashMap<>();
 
   public OpenShiftClient(Supplier<KubernetesClient> kubernetesClientFactory) {
     this.kubernetesClientFactory = kubernetesClientFactory;
