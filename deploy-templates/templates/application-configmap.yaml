@@ -5,7 +5,7 @@ metadata:
 data:
   config.yaml: |-
     server:
-      max-http-header-size: 16KB
+      max-http-header-size: 32KB
 
     logging:
       level:
