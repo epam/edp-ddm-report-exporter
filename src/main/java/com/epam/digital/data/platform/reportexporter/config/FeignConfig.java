@@ -2,6 +2,8 @@ package com.epam.digital.data.platform.reportexporter.config;
 
 import com.epam.digital.data.platform.reportexporter.config.feign.FeignErrorDecoder;
 import feign.RequestInterceptor;
+import feign.Retryer;
+import feign.Retryer.Default;
 import feign.codec.ErrorDecoder;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -26,4 +28,8 @@ public class FeignConfig {
     return new FeignErrorDecoder();
   }
 
+  @Bean
+  public Retryer retryer() {
+    return new Default();
+  }
 }
