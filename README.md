@@ -22,3 +22,6 @@ It also provides endpoints to browse all available dashboards in Redash
 1. (Optional) Package application into jar file with `mvn clean package`
 2. Add `--spring.profiles.active=local` to application run parameters
 3. Run application with your favourite IDE or via `java -jar ...` with jar file, created above
+
+### License
+report-exporter is Open Source software released under the Apache 2.0 license.
