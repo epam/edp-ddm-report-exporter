@@ -29,7 +29,5 @@ monitoring:
   prometheusScrapePath: /actuator/prometheus
   jobLabel: app
 
-dockerProxyRegistry: nexus-docker-registry.apps.cicd2.mdtu-ddm.projects.epam.com
-
 role:
   name: report-exporter-read-secrets
