@@ -22,7 +22,7 @@
     <java.version>11</java.version>
     <spring.boot.version>2.6.1</spring.boot.version>
     <spring.cloud.version>2021.0.0</spring.cloud.version>
-    <openshift.client.version>4.10.3</openshift.client.version>
+    <openshift.client.version>5.9.0</openshift.client.version>
     <sonar.coverage.exclusions>
       <!-- do not calc coverage for the classes without BL: -->
       **/model/**/*,
@@ -114,6 +114,10 @@
           <artifactId>spring-boot-starter-logging</artifactId>
         </exclusion>
       </exclusions>
+    </dependency>
+    <dependency>
+      <groupId>org.springframework.cloud</groupId>
+      <artifactId>spring-cloud-starter-sleuth</artifactId>
     </dependency>
     <dependency>
       <groupId>org.springframework.cloud</groupId>
