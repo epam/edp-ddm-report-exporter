@@ -15,9 +15,18 @@ spec:
     type: RollingUpdate
   template:
     metadata:
+      {{- if or .Values.podAnnotations .Values.global.registry.reportExporter.istio.sidecar.enabled }}
       annotations:
+        {{- if .Values.global.registry.reportExporter.istio.sidecar.enabled }}
         sidecar.istio.io/inject: "true"
         traffic.sidecar.istio.io/excludeOutboundPorts: '5432'
+        {{- if .Values.global.istio.sidecar.requestsLimitsEnabled }}
+        {{- include "reportExporter.istioResources" . | nindent 8 }}
+        {{- else }}
+        inject.istio.io/templates: 'sidecar,emptyRequestsLimits'
+        {{- end }}
+        {{- end }}
+      {{- end }}
       labels:
         app: {{ .Values.name }}
         version: {{ .Values.version }}
@@ -55,9 +64,10 @@ spec:
             periodSeconds: 20
             successThreshold: 1
             timeoutSeconds: 5
+          {{- if .Values.global.container.requestsLimitsEnabled }}
           resources:
-            requests:
-              memory: 500Mi
+            {{- toYaml .Values.global.registry.reportExporter.container.resources | nindent 12 }}
+          {{- end }}
           terminationMessagePath: /dev/termination-log
           terminationMessagePolicy: File
           volumeMounts:
@@ -66,6 +76,10 @@ spec:
               readOnly: true
               subPath: config.yaml
           env:
+            {{- range $name, $value := .Values.global.registry.reportExporter.container.envVars }}
+            - name: {{ $name }}
+              value: {{ $value | quote }}
+            {{- end }}
             - name: OPENSHIFT_NAMESPACE
               value: {{ .Values.namespace }}
             - name: REDASH_URL

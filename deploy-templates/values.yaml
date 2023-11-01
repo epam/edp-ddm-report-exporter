@@ -1,3 +1,26 @@
+global:
+  container:
+    requestsLimitsEnabled: true
+  istio:
+    sidecar:
+      requestsLimitsEnabled: true
+      resources:
+        requests: {}
+        limits: {}
+  registry:
+    reportExporter:
+      container:
+        envVars: {}
+        resources:
+          requests: {}
+          limits: {}
+      istio:
+        sidecar:
+          enabled: true
+          resources:
+            requests: {}
+            limits: {}
+
 name: report-exporter
 
 version: 1.1.0
